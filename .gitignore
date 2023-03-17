@@ -1,0 +1,24 @@
+# Ignore all extra file for nodejs project
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+# Ignore all extra file for python project
+*.pyc
+__pycache__/
+# Ignore all extra file for java project
+*.class
+# Ignore all extra file for c/c++ project
+*.o
+*.out
+*.exe
+*.a
+*.so
+*.dll
+*.lib
+*.exp
+*.ilk
+*.pdb
+*.idb
+*.sbr
+*.ncb
