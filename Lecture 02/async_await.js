@@ -5,7 +5,6 @@
  * It is a combination of async and await keywords.
  * Await will throw an error if called without async.
  * It is used to handle promises.
- *
  */
 
 function getData() {
