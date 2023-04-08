@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Avatar, { Avatar2 } from "./Components/Avatar";
 
 function App() {
+  let isLogged = false;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isLogged ? (
+        <Avatar
+          url="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+          alt="Sun set image"
+        />
+      ) : (
+        <Avatar
+          url="https://cdn.pixabay.com/photo/2017/03/19/20/19/ball-2157465__340.png"
+          alt="Logo image"
+        />
+      )}
     </div>
   );
 }
