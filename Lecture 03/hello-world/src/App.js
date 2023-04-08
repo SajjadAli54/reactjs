@@ -1,8 +1,28 @@
 import "./App.css";
 import Avatar, { Avatar2 } from "./Components/Avatar";
+import Table from "./Components/Table";
 
 function App() {
   let isLogged = false;
+
+  // Random data of 10 people
+  const data = [
+    {
+      firstName: "Maurise",
+      lastName: "Hartigan",
+      age: 25,
+    },
+    {
+      firstName: "Lorain",
+      lastName: "Bartosch",
+      age: 26,
+    },
+    {
+      firstName: "Lorain",
+      lastName: "Bartosch",
+      age: 28,
+    },
+  ];
 
   return (
     <div className="App">
@@ -17,6 +37,7 @@ function App() {
           alt="Logo image"
         />
       )}
+      <Table data={data} />
     </div>
   );
 }
