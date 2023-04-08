@@ -1,17 +1,17 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { count: 0 };
+    this.state = { date: new Date().toLocaleTimeString() };
 
     setInterval(this.updateTime, 1000);
   }
   updateTime = () => {
-    this.setState({ count: new Date().toLocaleTimeString() });
+    this.setState({ date: new Date().toLocaleTimeString() });
   };
   render() {
     return (
       <div>
-        <h1>{this.state.count}</h1>
+        <h1>{this.state.date}</h1>
       </div>
     );
   }
