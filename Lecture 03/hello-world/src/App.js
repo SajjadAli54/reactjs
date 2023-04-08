@@ -1,5 +1,5 @@
 import "./App.css";
-import Avatar, { Avatar2 } from "./Components/Avatar";
+import Avatar from "./Components/Avatar";
 import Table from "./Components/Table";
 
 function App() {

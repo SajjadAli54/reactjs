@@ -172,3 +172,5 @@ function App() {
   );
 }
 ```
+
+# Default Props
