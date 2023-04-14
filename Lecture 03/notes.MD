@@ -59,7 +59,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 ```
 
-## React bootsrap
+## React bootstrap or reactstrap
 
 ```bash
 npm install react-bootstrap bootstrap
@@ -104,12 +104,10 @@ import Avatar from "./Components/Avatar";
 
 ## Named Export
 
--      Can be imported with any name
--      Can be imported without curly braces
 -      Can be imported with curly braces
 
 ```jsx
-export function Avatar() {
+export function Avatar2() {
   return (
     <>
       <img src="https://picsum.photos/300/200" alt="Avatar" />
