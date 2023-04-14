@@ -1,13 +1,6 @@
-function Picture(props) {
-  return (
-    <div>
-      <img src={props.src} alt={props.alt} width={300} height={200} />
-      {props.children}
-    </div>
-  );
-}
+import { Picture } from "./picture";
 
-export function UsePicture() {
+export default function UsePicture() {
   return (
     <Picture
       src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8&w=1000&q=80"

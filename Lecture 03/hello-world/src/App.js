@@ -1,11 +1,11 @@
 import "./App.css";
-import { UsePicture } from "./Components/Picture";
+import UseTable from "./Components/table/useTable";
 
 function App() {
   return (
     <div className="App">
       <h1>React App</h1>
-      <UsePicture />
+      <UseTable />
     </div>
   );
 }
