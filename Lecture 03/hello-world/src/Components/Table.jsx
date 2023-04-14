@@ -1,4 +1,4 @@
-export default function Table({ data }) {
+function Table({ data }) {
   const tableStyle = {
     align: "center",
     border: "2px solid black",
@@ -24,4 +24,26 @@ export default function Table({ data }) {
       </tbody>
     </table>
   );
+}
+
+export default function UseTable() {
+  const data = [
+    {
+      firstName: "Maurise",
+      lastName: "Hartigan",
+      age: 25,
+    },
+    {
+      firstName: "Lorain",
+      lastName: "Bartosch",
+      age: 26,
+    },
+    {
+      firstName: "Lorain",
+      lastName: "Bartosch",
+      age: 28,
+    },
+  ];
+
+  return <Table data={data} />;
 }
