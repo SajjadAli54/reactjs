@@ -8,13 +8,14 @@ import React, { useState } from "react";
  *  - useState returns a pair: the current state value and a function that lets you update it.
  *  - useState is similar to this.state in a class, except it doesn’t merge the old and new state together.
  *  - useState is a new way to use the exact same capabilities that this.state provides in a class.
- *  - useState is a Hook (we’ll talk about what this means in a moment). We call it inside a function component to add some local state to it.
+ *  - useState is a Hook (we’ll talk about what this means in a moment).
+ *    We call it inside a function component to add some local state to it.
  *  - React will preserve this state between re-renders.
  *  - It must not be called conditionally because that would prevent React from tracking it.
- *  - It also must not be called nested in another function because that would make it a local variable that would be re-initialized on every render.
+ *  - It also must not be called nested in another function because that would make it a local variable that would be
+ *    re-initialized on every render.
  *  - Hooks don’t work inside classes. But you can use them instead of writing classes.
  *  - Hooks are functions that let you “hook into” React state and lifecycle features from function components.
- *
  */
 
 function CounterFunction() {
