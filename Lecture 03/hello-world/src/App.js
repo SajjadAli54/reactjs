@@ -1,11 +1,11 @@
 import "./App.css";
-import UseTable from "./Components/table/useTable";
+import Counter from "./Components/counter/counter.jsx";
 
 function App() {
   return (
     <div className="App">
       <h1>React App</h1>
-      <UseTable />
+      <Counter />
     </div>
   );
 }
