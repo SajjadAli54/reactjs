@@ -1,3 +1,50 @@
+# React Class Components
+
+- Class components are a type of component in React that are defined as JavaScript classes.
+- They extend the `React.Component` base class and have access to the React class component life cycle methods.
+- They can accept props as an argument to their constructor or via the `this.props` object.
+- They can have state defined via the `this.state` object and can update state via the `this.setState()` method.
+- They can render a React element using the `render()` method, which returns a single React element.
+- They can define methods that can be used for event handling, data manipulation, or other logic.
+- They can have access to the `componentDidMount()`, `componentDidUpdate()`, `componentWillUnmount()`, and other life cycle methods, which allow you to run code at different points in the component's lifecycle.
+- They can also use `shouldComponentUpdate()` to optimize rendering and avoid unnecessary updates.
+- They can be more verbose and require more boilerplate code than functional components, but can be useful for more complex components or when working with third-party libraries that require class components.
+- They are gradually being replaced by functional components and hooks, which are simpler and more lightweight.
+
+```jsx
+import React, { Component } from "react";
+
+class CounterClass extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+    };
+  }
+
+  handleIncrement = () => {
+    this.setState((prevState) => ({ count: prevState.count + 1 }));
+  };
+
+  handleDecrement = () => {
+    this.setState((prevState) => ({ count: prevState.count - 1 }));
+  };
+
+  render() {
+    return (
+      <>
+        <h1>Counter</h1>
+        <button onClick={this.handleDecrement}>-</button>
+        <span>{this.state.count}</span>
+        <button onClick={this.handleIncrement}>+</button>
+      </>
+    );
+  }
+}
+
+export default CounterClass;
+```
+
 # React Functional Components and Hooks
 
 React Functional Components
@@ -236,3 +283,41 @@ function Comments({ items }) {
   );
 }
 ```
+
+# this binding
+
+In React functional components, you don't have access to the `this` keyword like you would in a class component. This is because functional components don't have a `this` context of their own.
+
+However, there are still situations where you may need to bind a function to a particular `this` context. For example, if you want to pass a method of a parent component down to a child component as a prop, you may need to bind the method to the parent component's `this` context to ensure that it behaves correctly.
+
+To bind `this` in a functional component, you can use the `bind()` method or the arrow function syntax. Here's an example of using the `bind()` method to bind a function to a particular `this` context:
+
+```jsx
+import React from "react";
+
+function MyComponent(props) {
+  function handleClick() {
+    console.log(this.props.message);
+  }
+
+  return <button onClick={handleClick.bind(this)}>Click me</button>;
+}
+```
+
+In this example, the `handleClick` function is defined within the component and is passed to the `onClick` prop of the `button` element. The `bind()` method is used to bind the function to the `this` context of the component.
+
+Alternatively, you can use the arrow function syntax to automatically bind the function to the lexical `this` scope. Here's an example:
+
+```jsx
+import React from "react";
+
+function MyComponent(props) {
+  const handleClick = () => {
+    console.log(this.props.message);
+  };
+
+  return <button onClick={handleClick}>Click me</button>;
+}
+```
+
+In this example, the `handleClick` function is defined using the arrow function syntax, which automatically binds the function to the lexical `this` scope.
