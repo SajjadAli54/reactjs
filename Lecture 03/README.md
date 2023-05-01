@@ -12,6 +12,8 @@ Nodejs
   - Provides better security
   - lock.json file for depedencies
 
+---
+
 # Monolithic and micro services
 
 While a monolithic application is a single unified unit, a microservices architecture
@@ -19,11 +21,15 @@ breaks it down into a collection of smaller independent units.
 These units carry out every application process as a separate service.
 So, all the services have their own logic and databases, as well as perform specific functions.
 
+---
+
 # System Design
 
 Systems design is the process of defining elements of a system like modules, architecture, components and their interfaces and data for a system based on the specified requirements.
 
 Highest paid job
+
+---
 
 # Raectjs
 
@@ -73,6 +79,8 @@ import { Button } from "react-bootstrap";
 
 - Different files for different components
 - Each file has its own html (jsx), css, and js
+
+---
 
 # Exports
 
@@ -135,6 +143,8 @@ function App() {
 export default App;
 ```
 
+---
+
 # Props
 
 ```jsx
@@ -171,4 +181,60 @@ function App() {
 }
 ```
 
-# Default Props
+## Default Props
+
+In React, default props are used to provide default values for a component's props in case they are not specified by the parent component. This can be useful when you want to provide sensible default values for optional props, or when you want to avoid errors caused by missing props.
+
+To define default props for a component, you can use the "defaultProps" property. Here's an example:
+
+```jsx
+class MyComponent extends React.Component {
+  static defaultProps = {
+    color: "red",
+    size: 10,
+    disabled: false,
+  };
+
+  render() {
+    return (
+      <div>
+        <p>Color: {this.props.color}</p>
+        <p>Size: {this.props.size}</p>
+        <p>Disabled: {this.props.disabled.toString()}</p>
+      </div>
+    );
+  }
+}
+```
+
+In this example, we define default props for the "color", "size", and "disabled" props. If these props are not specified by the parent component, the default values will be used instead.
+
+If a prop is specified by the parent component, its value will override the default value. For example:
+
+```jsx
+<MyComponent size={20} />
+```
+
+In this case, the "size" prop is specified with a value of 20, so the default value of 10 is ignored.
+
+Default props can also be defined for functional components using the "defaultProps" property:
+
+```jsx
+function MyFunctionalComponent(props) {
+  return (
+    <div>
+      <p>Color: {props.color}</p>
+      <p>Size: {props.size}</p>
+      <p>Disabled: {props.disabled.toString()}</p>
+    </div>
+  );
+}
+
+MyFunctionalComponent.defaultProps = {
+  color: "red",
+  size: 10,
+  disabled: false,
+};
+```
+
+In this example, we define default props for a functional component called "MyFunctionalComponent". These default props will be used if the parent component does not specify a value for a particular prop.
