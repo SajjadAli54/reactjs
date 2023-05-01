@@ -18,8 +18,6 @@
  * It has a event loop which checks the call stack is empty or not.
  * If it is empty, it will push the first element from the message queue to the call stack.
  * It will be executed.
- *
- *
  * */
 
 function getData(callback) {
