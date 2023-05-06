@@ -284,7 +284,7 @@ function Comments({ items }) {
 }
 ```
 
-# this binding
+# Event Binding
 
 In React functional components, you don't have access to the `this` keyword like you would in a class component. This is because functional components don't have a `this` context of their own.
 
