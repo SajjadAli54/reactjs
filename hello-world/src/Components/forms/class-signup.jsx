@@ -8,13 +8,26 @@ export class SignupClass extends Component {
       email: "",
     };
   }
+
+  handleChange = (event) => {
+    // Event Synthesize object: event
+    this.setState(
+      {
+        [event.target.name]: event.target.value,
+      },
+      (prevState) => {
+        console.log(prevState.fullname);
+      }
+    );
+  };
+
   render() {
     return (
       <>
         <h1>Register</h1>
         <form>
           <label>Name: </label>
-          <input type="text" name="fullname" />
+          <input type="text" name="fullname" onChange={this.handleChange} />
           <br /> <br />
           <label>Email: </label>
           <input type="email" name="email" />
