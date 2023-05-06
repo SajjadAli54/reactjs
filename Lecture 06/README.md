@@ -59,5 +59,15 @@ function Child(props) {
 ```
 
 - State Lift up: Move state to its parent component to share with its siblings or other
+- We use `useReducer` and `useContext` for this purpose. We can also use `redux` for state management.
 
-We use `useReducer` and `useContext` for this purpose. We can also use `redux` for state management.
+---
+
+# Forms in React
+
+## Controlled Components
+
+- Does not have its own state. State cam from its parent as props
+- Data input => Get and set in general, not in react
+- We have to set the values by ourselves using state
+- Reason: **Single source of truth**

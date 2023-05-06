@@ -199,3 +199,21 @@ const [a, ...b] = arr;
 console.log(a); // 1
 console.log(b); // [2, 3, 4]
 ```
+
+# Computed Properties
+
+```js
+const address = "KD";
+const obj = {
+  [address] = 23
+};
+```
+
+# Enhanced Object Literals
+
+```js
+const address = "KD";
+const obj = {
+  address,
+};
+```
