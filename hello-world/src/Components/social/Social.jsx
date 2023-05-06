@@ -15,7 +15,7 @@ export default function Social() {
    *  - useEffect(() => {}, [])
    */
   useEffect(() => {
-    console.log("onMount");
+    console.log(`onMount ${resourceType}`);
     window.addEventListener("resize", handleResize);
 
     // clean up function
@@ -30,21 +30,11 @@ export default function Social() {
    * - useEffect(() => {}, [resourceType, anotherState])
    */
   useEffect(() => {
-    console.log("onUpdate");
+    console.log("onUpdate function " + resourceType);
     fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
       .then((response) => response.json())
       .then((json) => setItems(json));
   }, [resourceType]);
-
-  /**
-   * useEffect as componentWillUnmount
-   * - useEffect(() => { return () => {} }, [])
-   */
-  useEffect(() => {
-    return () => {
-      console.log("onUnmount");
-    };
-  }, []);
 
   return (
     <>
