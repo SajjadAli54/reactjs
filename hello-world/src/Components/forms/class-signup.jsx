@@ -9,10 +9,10 @@ export class SignupClass extends Component {
       gender: "",
       about: "",
       male: false,
-      TS: false,
       react: false,
       typescript: false,
-      age: 22,
+      language: ["urdu", "english"],
+      country: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -20,8 +20,10 @@ export class SignupClass extends Component {
 
   handleChange(event) {
     // Event Synthesize object: event
-    let { name, value, type, checked } = event.target;
+    let { name, value, type, checked, selectedOptions } = event.target;
     if (type === "checkbox") value = checked;
+    else if (name === "language")
+      value = Array.from(selectedOptions, (option) => option.value);
     this.setState({ [name]: value });
   }
 
@@ -76,6 +78,21 @@ export class SignupClass extends Component {
           <label>Male</label>
           <input type="radio" name="male" value="female" />
           <label>Female</label>
+
+          <label>Language</label>
+          <select
+            name="language"
+            value={this.state.language}
+            onChange={this.handleChange}
+            multiple
+          >
+            <option value="urdu">Urdu</option>
+            <option value="english">English</option>
+            <option value="vietnamese">Vietnamese</option>
+            <option value="japanese">Japanese</option>
+          </select>
+
+          <input type="submit" value="Submit" />
         </form>
       </>
     );

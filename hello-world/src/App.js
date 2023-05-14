@@ -1,11 +1,10 @@
 import "./App.css";
-import SignupClass from "./Components/forms/class-signup";
-import Signup from "./Components/forms/signup";
+import MyYup from "./Components/my_formic/myYup";
 
 function App() {
   return (
     <div className="App">
-      <SignupClass />
+      <MyYup />
     </div>
   );
 }
