@@ -1,10 +1,10 @@
 import "./App.css";
-import MyCounter from "./Components/counter/myCounter";
+import Main from "./Components/routing/main";
 
 function App() {
   return (
     <div className="App">
-      <MyCounter initialCount={6} min={0} max={10} />
+      <Main />
     </div>
   );
 }

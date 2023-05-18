@@ -1,0 +1,109 @@
+# React Routers
+
+## Basics
+
+[Docs](https://www.w3schools.com/react/react_router.asp)
+
+```sh
+npm i -D react-router-dom
+```
+
+```jsx
+import React from "react";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { About, Home, Layouts, Contact, Blogs, NoPage } from "./pages";
+
+export default function Main() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layouts />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="blog" element={<Blogs />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+```
+
+```jsx
+import React from "react";
+import { Outlet, Link } from "react-router-dom";
+
+import "./pages.css";
+
+function Home() {
+  return <h1>Home</h1>;
+}
+
+function Layouts() {
+  return (
+    <>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="about">About</Link>
+          </li>
+          <li>
+            <Link to="contact">Contact</Link>
+          </li>
+          <li>
+            <Link to="blog">Blog</Link>
+          </li>
+        </ul>
+      </nav>
+      <Outlet />
+    </>
+  );
+}
+
+function Blogs() {
+  return <div>Blog</div>;
+}
+
+function About() {
+  return <div>About</div>;
+}
+
+function Contact() {
+  return <div>Contact</div>;
+}
+
+function NoPage() {
+  return <div>404</div>;
+}
+
+export { Home, Layouts, Blogs, About, Contact, NoPage };
+```
+
+```css
+nav {
+  display: flex;
+  justify-content: justify-content;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 0 1rem;
+  height: 5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+li {
+  list-style: none;
+  padding: 0 1rem;
+  display: inline;
+}
+```

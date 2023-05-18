@@ -1,0 +1,22 @@
+nav {
+    display: flex;
+    justify-content: justify-content;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 0 1rem;
+    height: 5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+}
+
+li {
+    list-style: none;
+    padding: 0 1rem;
+    display: inline;
+}
