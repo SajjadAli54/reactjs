@@ -9,6 +9,21 @@ npm i -D react-router-dom
 ```
 
 ```jsx
+import "./App.css";
+import Main from "./Components/routing/main";
+
+function App() {
+  return (
+    <div className="App">
+      <Main />
+    </div>
+  );
+}
+
+export default App;
+```
+
+```jsx
 import React from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
