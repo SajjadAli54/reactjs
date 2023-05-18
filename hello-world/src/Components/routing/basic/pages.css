@@ -20,3 +20,15 @@ li {
     padding: 0 1rem;
     display: inline;
 }
+
+ul li a {
+    color: #000;
+   }
+   
+   ul li a:hover {
+    color: #00a8ff;
+   }
+   
+   ul li a.active {
+    color: #00a8ff;
+   }

@@ -48,7 +48,7 @@ export default function Main() {
 
 ```jsx
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 
 import "./pages.css";
 
@@ -62,16 +62,16 @@ function Layouts() {
       <nav>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <Link to="about">About</Link>
+            <NavLink to="about">About</NavLink>
           </li>
           <li>
-            <Link to="contact">Contact</Link>
+            <NavLink to="contact">Contact</NavLink>
           </li>
           <li>
-            <Link to="blog">Blog</Link>
+            <NavLink to="blog">Blog</NavLink>
           </li>
         </ul>
       </nav>
@@ -121,4 +121,18 @@ li {
   padding: 0 1rem;
   display: inline;
 }
+
+ul li a {
+  color: #000;
+}
+
+ul li a:hover {
+  color: #00a8ff;
+}
+
+ul li a.active {
+  color: #00a8ff;
+}
 ```
+
+## Medium
