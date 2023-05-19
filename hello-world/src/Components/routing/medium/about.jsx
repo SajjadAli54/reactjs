@@ -1,5 +1,8 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 export default function About() {
-  return <div>About</div>;
+  const location = useLocation();
+  const name = location.state.name;
+  return <h1>About + {`  ${name}`}</h1>;
 }

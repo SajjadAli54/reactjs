@@ -1,6 +1,6 @@
 # React Routers
 
-## Basics
+## Basics of React Routing such as routes, links, navlinks, and index
 
 [Docs](https://www.w3schools.com/react/react_router.asp)
 
@@ -135,4 +135,64 @@ ul li a.active {
 }
 ```
 
-## Medium
+## use Navigation
+
+use hook `useNavigator`
+
+```jsx
+import React from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import "../basic/pages.css";
+
+export default function Navbar() {
+  const navigate = useNavigate();
+  function handleClick(event) {
+    event.preventDefault();
+    navigate("/about");
+  }
+  return (
+    <>
+      <nav>
+        <ul>
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/products">Products</NavLink>
+          </li>
+          <li>
+            <NavLink to="*" onClick={handleClick}>
+              About
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
+      <Outlet />
+    </>
+  );
+}
+```
+
+### Passing the data using useVavigators
+
+1. Using state and use location
+
+```jsx
+const navigate = useNavigate();
+function handleClick(event) {
+  event.preventDefault();
+  navigate("/about", { state: { name: "Saurabh" } });
+}
+```
+
+```jsx
+// Getting data
+import React from "react";
+import { useLocation } from "react-router-dom";
+
+export default function About() {
+  const location = useLocation();
+  const name = location.state.name;
+  return <h1>About + {`  ${name}`}</h1>;
+}
+```
