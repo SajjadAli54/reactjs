@@ -4,6 +4,7 @@ import Home from "./home";
 import About from "./about";
 import Products from "./products";
 import Navbar from "./navbar";
+import Data from "./data";
 
 export default function main() {
   return (
@@ -14,6 +15,7 @@ export default function main() {
             <Route index element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/data/:data" element={<Data />} />
           </Route>
         </Routes>
       </BrowserRouter>

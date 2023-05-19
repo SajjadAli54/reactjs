@@ -175,6 +175,8 @@ export default function Navbar() {
 
 ### Passing the data using useVavigators
 
+[Docs](https://plainenglish.io/blog/how-to-pass-data-between-pages-in-react-router-dom-v6)
+
 1. Using state and use location
 
 ```jsx
@@ -194,5 +196,59 @@ export default function About() {
   const location = useLocation();
   const name = location.state.name;
   return <h1>About + {`  ${name}`}</h1>;
+}
+```
+
+2. Through URL params
+
+First define the route like this
+
+path/:var_name
+
+```jsx
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Data from "./data";
+
+export default function main() {
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navbar />}>
+            // All other same
+            <Route path="/data/:data" element={<Data />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
+}
+```
+
+Passing data like this one
+
+```jsx
+function handleDataClick(event) {
+  event.preventDefault();
+  const obj = {
+    name: "Sajjad",
+    age: 23,
+    married: false,
+    salary: 30000,
+  };
+  navigate(`data/${JSON.stringify(obj)}`);
+}
+```
+
+Getting the data
+
+```jsx
+import React from "react";
+import { useParams } from "react-router-dom";
+
+export default function Data() {
+  const { data } = useParams();
+  return <h1>{`Data ${data}`}</h1>;
 }
 ```

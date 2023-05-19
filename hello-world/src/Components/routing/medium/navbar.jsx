@@ -4,9 +4,20 @@ import "../basic/pages.css";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  function handleClick(event) {
+  function handleAboutClick(event) {
     event.preventDefault();
     navigate("/about", { state: { name: "Saurabh" } });
+  }
+
+  function handleDataClick(event) {
+    event.preventDefault();
+    const obj = {
+      name: "Sajjad",
+      age: 23,
+      married: false,
+      salary: 30000,
+    };
+    navigate(`data/${JSON.stringify(obj)}`);
   }
   return (
     <>
@@ -19,8 +30,13 @@ export default function Navbar() {
             <NavLink to="/products">Products</NavLink>
           </li>
           <li>
-            <NavLink to="*" onClick={handleClick}>
+            <NavLink to="*" onClick={handleAboutClick}>
               About
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="*" onClick={handleDataClick}>
+              Data
             </NavLink>
           </li>
         </ul>
