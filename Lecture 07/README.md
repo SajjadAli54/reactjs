@@ -252,3 +252,79 @@ export default function Data() {
   return <h1>{`Data ${data}`}</h1>;
 }
 ```
+
+# Higher Order Components (HOC)
+
+A JS function that takes a react component and returns updateed react component.
+Examples:
+
+Rich = Money(Person)
+
+```jsx
+import React from "react";
+import { useState } from "react";
+
+function UpdatedComponent(OriginalComponent) {
+  const NewComponent = () => {
+    const [money, setMoney] = useState(() => 10);
+
+    const increaseMoney = () => {
+      setMoney((money) => money + 1);
+    };
+    return <OriginalComponent increaseMoney={increaseMoney} money={money} />;
+  };
+  return NewComponent;
+}
+
+export default UpdatedComponent;
+```
+
+```jsx
+import React from "react";
+import UpdatedComponent from "./hoc";
+
+function Person1({ money, increaseMoney }) {
+  return (
+    <>
+      <h2> Jimmy is offering ${money}</h2>
+      <button onClick={increaseMoney}>Increase money</button>
+    </>
+  );
+}
+
+export default UpdatedComponent(Person1);
+```
+
+```jsx
+import React from "react";
+import UpdatedComponent from "./hoc";
+
+function Person2({ money, increaseMoney }) {
+  return (
+    <>
+      <h2> John is offering ${money}</h2>
+      <button onClick={increaseMoney}>Increase money</button>
+    </>
+  );
+}
+
+export default UpdatedComponent(Person2);
+```
+
+```jsx
+import React from "react";
+import Person1 from "./person1";
+import Person2 from "./person2";
+
+function Persons() {
+  return (
+    <div>
+      <h1>Auction</h1>
+      <Person1 />
+      <Person2 />
+    </div>
+  );
+}
+
+export default Persons;
+```
