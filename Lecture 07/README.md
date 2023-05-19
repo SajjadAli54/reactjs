@@ -255,10 +255,16 @@ export default function Data() {
 
 # Higher Order Components (HOC)
 
+[Docs](https://www.smashingmagazine.com/2020/06/higher-order-components-react/s)
+
 A JS function that takes a react component and returns updateed react component.
 Examples:
 
 Rich = Money(Person)
+
+**Wrapped Component**
+
+The component that is passed as argument
 
 ## Basic Auction code example
 
