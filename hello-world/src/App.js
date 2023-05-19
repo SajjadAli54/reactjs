@@ -1,11 +1,21 @@
 import "./App.css";
-import Persons from "./Components/higher-order-component/persons";
-import Main from "./Components/routing/medium/main";
+import Image from "./Components/higher-order-component/gray/image";
 
 function App() {
   return (
     <div className="App">
-      <Persons />
+      <Image
+        url="https://picsum.photos/200/300"
+        alt="random image"
+        width={300}
+        height={300}
+        style={{
+          border: "1px solid red",
+          borderRadius: "50%",
+          padding: 5,
+          margin: 5,
+        }}
+      />
     </div>
   );
 }

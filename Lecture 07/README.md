@@ -260,6 +260,8 @@ Examples:
 
 Rich = Money(Person)
 
+## Basic Auction code example
+
 ```jsx
 import React from "react";
 import { useState } from "react";
@@ -327,4 +329,58 @@ function Persons() {
 }
 
 export default Persons;
+```
+
+## Gray Images
+
+```jsx
+import React from "react";
+
+function GrayScale(OriginalImage) {
+  return (props) => {
+    const style = { ...props.style, filter: "grayscale(100%)" };
+    return <OriginalImage {...props} style={style} />;
+  };
+}
+
+export default GrayScale;
+```
+
+```jsx
+import React from "react";
+import GrayScale from "./hoc";
+
+function Image({ style, url, alt, width, height }) {
+  return (
+    <img src={url} alt={alt} width={width} height={height} style={style} />
+  );
+}
+
+export default GrayScale(Image);
+```
+
+```jsx
+import "./App.css";
+import Image from "./Components/higher-order-component/gray/image";
+
+function App() {
+  return (
+    <div className="App">
+      <Image
+        url="https://picsum.photos/200/300"
+        alt="random image"
+        width={300}
+        height={300}
+        style={{
+          border: "1px solid red",
+          borderRadius: "50%",
+          padding: 5,
+          margin: 5,
+        }}
+      />
+    </div>
+  );
+}
+
+export default App;
 ```
