@@ -24,6 +24,9 @@ function Layouts() {
           <li>
             <NavLink to="blog">Blog</NavLink>
           </li>
+          <li>
+            <NavLink to="medium">Medium</NavLink>
+          </li>
         </ul>
       </nav>
       <Outlet />
