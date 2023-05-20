@@ -1,20 +1,22 @@
-// Higher components using class components
-
 import React, { Component } from "react";
 
 const updatedComponent = (OriginalComponent) => {
   class NewComponent extends Component {
     render() {
-      const style = { ...this.props.style, filter: "grayscale(100%)" };
-      return <OriginalComponent {...this.props} style={style} />;
+      const style = { filter: "grayscale(100%)" };
+      return (
+        <div style={style}>
+          <OriginalComponent {...this.props} />
+        </div>
+      );
     }
   }
   return NewComponent;
 };
 
-function Image({ style, url, alt, width, height }) {
+function Image({ style, src, alt, width, height }) {
   return (
-    <img src={url} alt={alt} width={width} height={height} style={style} />
+    <img src={src} alt={alt} width={width} height={height} style={style} />
   );
 }
 

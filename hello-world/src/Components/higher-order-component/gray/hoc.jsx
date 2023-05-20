@@ -2,8 +2,12 @@ import React from "react";
 
 function GrayScale(OriginalImage) {
   return (props) => {
-    const style = { ...props.style, filter: "grayscale(100%)" };
-    return <OriginalImage {...props} style={style} />;
+    const style = { filter: "grayscale(100%)" };
+    return (
+      <div style={style}>
+        <OriginalImage {...props} />
+      </div>
+    );
   };
 }
 
