@@ -190,6 +190,102 @@ export default C;
 
 ## Multiple Consumers and Providers
 
+```jsx
+import React from "react";
+
+const PersonContext = React.createContext();
+const CartContext = React.createContext();
+
+const PersonProvider = PersonContext.Provider;
+const PersonConsumer = PersonContext.Consumer;
+
+const CartProvider = CartContext.Provider;
+const CartConsumer = CartContext.Consumer;
+
+export { PersonProvider, PersonConsumer, CartProvider, CartConsumer };
+```
+
+```jsx
+import React from "react";
+import A from "./A";
+
+import { PersonProvider, CartProvider } from "./personContext";
+
+function Main() {
+  return (
+    <PersonProvider value={"Ali"}>
+      <CartProvider value={"Cart"}>
+        <h1>Component Main</h1>
+        <A />
+      </CartProvider>
+    </PersonProvider>
+  );
+}
+
+export default Main;
+```
+
+```jsx
+import React from "react";
+import B from "./B";
+
+function A(props) {
+  return (
+    <>
+      <h1>Component A</h1>
+      <B />
+    </>
+  );
+}
+
+export default A;
+```
+
+```jsx
+import React from "react";
+import C from "./C";
+
+function B(props) {
+  return (
+    <>
+      <h1>Component B</h1>
+      <C />
+    </>
+  );
+}
+
+export default B;
+```
+
+```jsx
+import React from "react";
+
+import { CartConsumer, PersonConsumer } from "./personContext";
+
+function C(props) {
+  return (
+    <>
+      <PersonConsumer>
+        {(person) => {
+          return (
+            <CartConsumer>
+              {(cart) => (
+                <h1>
+                  {" "}
+                  Component C: hello {person}, {cart}
+                </h1>
+              )}
+            </CartConsumer>
+          );
+        }}
+      </PersonConsumer>
+    </>
+  );
+}
+
+export default C;
+```
+
 <p style="display: none;">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({ startOnLoad: true });</script>
