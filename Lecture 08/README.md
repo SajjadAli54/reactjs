@@ -417,6 +417,94 @@ const mapResult = array.reduce(mapReducer, []);
 console.log(mapResult); // [ 2, 4, 6, 8, 10 ]
 ```
 
+## use Reducers
+
+```jsx
+import React from "react";
+import { useReducer } from "react";
+
+const initialValue = 0;
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "increment":
+      return ++state;
+    case "decrement":
+      return --state;
+    default:
+      return state;
+  }
+};
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, initialValue);
+  return (
+    <>
+      <h1>Count: {state}</h1>
+      <button onClick={() => dispatch({ type: "increment" })}>+</button>
+      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
+    </>
+  );
+}
+
+export default Counter;
+```
+
+Passing data from button to dispatcher
+
+```jsx
+import React from "react";
+import { useReducer } from "react";
+import "./reducer.css";
+
+const initialValue = 0;
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "increment":
+      return state + action.value;
+    case "decrement":
+      return state - action.value;
+    default:
+      return state;
+  }
+};
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, initialValue);
+  return (
+    <>
+      <h1>Count: {state}</h1>
+      <button onClick={() => dispatch({ type: "increment", value: 5 })}>
+        +
+      </button>
+      <button onClick={() => dispatch({ type: "decrement", value: 2 })}>
+        -
+      </button>
+    </>
+  );
+}
+
+export default Counter;
+```
+
+```css
+.h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+```
+
 <p style="display: none;">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({ startOnLoad: true });</script>
