@@ -9,4 +9,11 @@ const PersonConsumer = PersonContext.Consumer;
 const CartProvider = CartContext.Provider;
 const CartConsumer = CartContext.Consumer;
 
-export { PersonProvider, PersonConsumer, CartProvider, CartConsumer };
+export {
+  PersonContext,
+  CartContext,
+  PersonProvider,
+  PersonConsumer,
+  CartProvider,
+  CartConsumer,
+};

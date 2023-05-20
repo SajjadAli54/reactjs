@@ -333,6 +333,30 @@ export default C;
 
 ![1684576162444](image/README/1684576162444.png)
 
+## context type
+
+```jsx
+import React from "react";
+
+import { PersonContext } from "./personContext";
+
+class C extends React.Component {
+  render() {
+    return (
+      <>
+        <h1>
+          Context {this.context} {this.context.context}
+        </h1>
+      </>
+    );
+  }
+}
+
+C.contextType = PersonContext;
+
+export default C;
+```
+
 <p style="display: none;">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({ startOnLoad: true });</script>
