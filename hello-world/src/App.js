@@ -1,5 +1,4 @@
 import "./App.css";
-import UseCounter from "./Components/render/counter";
 import DataConsumer from "./Components/render/dataProvider";
 
 function App() {

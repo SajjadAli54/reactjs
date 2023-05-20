@@ -87,3 +87,20 @@ export default App;
 # Difference between render props and hoc
 
 HOC , Render Props and now hooks all serve to the same purpose: Share stateful logic between components. There is actually no way to tell which one is better or worst. All depends on your use case. On the other hand, render props it's easy to set up, have less boilerplate and in most cases are easier to reason about.
+
+# Context Api
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
+
+## Providers
+
+## Consumers
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
