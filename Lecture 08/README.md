@@ -351,6 +351,34 @@ export default C;
 
 - Global State management
 
+## reduce in js
+
+```js
+const array = [1, 2, 3, 4, 5];
+
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+const result = array.reduce(reducer, 2);
+
+console.log(result); // 17
+
+const evenReducer = (accumulator, currentValue) => {
+  if (currentValue % 2 === 0) {
+    accumulator["even"].push(currentValue);
+  } else {
+    accumulator["odd"].push(currentValue);
+  }
+  return accumulator;
+};
+
+const evenResult = array.reduce(evenReducer, {
+  even: [],
+  odd: [],
+});
+
+console.log(evenResult);
+```
+
 <p style="display: none;">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({ startOnLoad: true });</script>
