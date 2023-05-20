@@ -28,6 +28,8 @@ The render props pattern is a way to share functionality between components with
 
 We have full control over components!
 
+Use either render or as children!
+
 ```jsx
 import React from "react";
 
