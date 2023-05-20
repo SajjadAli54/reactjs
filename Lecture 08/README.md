@@ -362,6 +362,7 @@ const result = array.reduce(reducer, 2);
 
 console.log(result); // 17
 
+// reduce as fliter
 const evenReducer = (accumulator, currentValue) => {
   if (currentValue % 2 === 0) {
     accumulator["even"].push(currentValue);
@@ -377,6 +378,20 @@ const evenResult = array.reduce(evenReducer, {
 });
 
 console.log(evenResult);
+```
+
+reduce as map
+
+```js
+// reduce as map
+const mapReducer = (accumulator, currentValue) => {
+  accumulator.push(currentValue * 2);
+
+  return accumulator;
+};
+
+const mapResult = array.reduce(mapReducer, []);
+console.log(mapResult); // [ 2, 4, 6, 8, 10 ]
 ```
 
 <p style="display: none;">
