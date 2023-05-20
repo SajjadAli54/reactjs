@@ -1,5 +1,5 @@
 import "./App.css";
-import Image from "./Components/higher-order-component/gray/image";
+import Image from "./Components/higher-order-component/classes/classHoc";
 
 function App() {
   return (
