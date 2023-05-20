@@ -90,8 +90,10 @@ HOC , Render Props and now hooks all serve to the same purpose: Share stateful l
 
 # Context Api
 
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({ startOnLoad: true });</script>
+- Used to avoid prop dealing issue
+- Helps in state management
+- Global State
+- Use Reducer for global
 
 ## Providers
 
@@ -99,8 +101,14 @@ HOC , Render Props and now hooks all serve to the same purpose: Share stateful l
 
 ```mermaid
 graph TD;
-    A-->B;
+    App-->A;
+    App-->B;
     A-->C;
-    B-->D;
-    C-->D;
+    C-->G;
+    A-->D;
+    B-->E;
+    B-->F;
 ```
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true });</script>
