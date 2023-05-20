@@ -286,6 +286,53 @@ function C(props) {
 export default C;
 ```
 
+## Default values in context
+
+```jsx
+import React from "react";
+
+const PersonContext = React.createContext("Sajjad Ali");
+const CartContext = React.createContext();
+
+const PersonProvider = PersonContext.Provider;
+const PersonConsumer = PersonContext.Consumer;
+
+const CartProvider = CartContext.Provider;
+const CartConsumer = CartContext.Consumer;
+
+export { PersonProvider, PersonConsumer, CartProvider, CartConsumer };
+```
+
+```jsx
+import React from "react";
+
+import { CartConsumer, PersonConsumer } from "./personContext";
+
+function C(props) {
+  return (
+    <>
+      <PersonConsumer>
+        {(person) => {
+          return (
+            <CartConsumer>
+              {(cart) => (
+                <h1>
+                  Component C: hello {person}, {cart}
+                </h1>
+              )}
+            </CartConsumer>
+          );
+        }}
+      </PersonConsumer>
+    </>
+  );
+}
+
+export default C;
+```
+
+![1684576162444](image/README/1684576162444.png)
+
 <p style="display: none;">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({ startOnLoad: true });</script>

@@ -11,7 +11,6 @@ function C(props) {
             <CartConsumer>
               {(cart) => (
                 <h1>
-                  {" "}
                   Component C: hello {person}, {cart}
                 </h1>
               )}

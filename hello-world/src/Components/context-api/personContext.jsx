@@ -1,6 +1,6 @@
 import React from "react";
 
-const PersonContext = React.createContext();
+const PersonContext = React.createContext("Sajjad Ali");
 const CartContext = React.createContext();
 
 const PersonProvider = PersonContext.Provider;
