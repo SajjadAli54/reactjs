@@ -305,30 +305,20 @@ export { PersonProvider, PersonConsumer, CartProvider, CartConsumer };
 
 ```jsx
 import React from "react";
+import A from "./A";
 
-import { CartConsumer, PersonConsumer } from "./personContext";
+import { CartProvider } from "./personContext";
 
-function C(props) {
+function Main() {
   return (
-    <>
-      <PersonConsumer>
-        {(person) => {
-          return (
-            <CartConsumer>
-              {(cart) => (
-                <h1>
-                  Component C: hello {person}, {cart}
-                </h1>
-              )}
-            </CartConsumer>
-          );
-        }}
-      </PersonConsumer>
-    </>
+    <CartProvider value={"Cart"}>
+      <h1>Component Main</h1>
+      <A />
+    </CartProvider>
   );
 }
 
-export default C;
+export default Main;
 ```
 
 ![1684576162444](image/README/1684576162444.png)
@@ -356,6 +346,10 @@ C.contextType = PersonContext;
 
 export default C;
 ```
+
+# Use Reducer
+
+- Global State management
 
 <p style="display: none;">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>

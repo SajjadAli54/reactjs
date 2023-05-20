@@ -1,11 +1,6 @@
 import React from "react";
 
-import {
-  CartConsumer,
-  PersonConsumer,
-  PersonContext,
-  CartContext,
-} from "./personContext";
+import { PersonContext, CartContext } from "./personContext";
 
 class C extends React.Component {
   render() {
