@@ -1,12 +1,23 @@
 import React from "react";
 
-import { PersonConsumer } from "./personContext";
+import { CartConsumer, PersonConsumer } from "./personContext";
 
 function C(props) {
   return (
     <>
       <PersonConsumer>
-        {(person) => <h1> Component C: hello {person}</h1>}
+        {(person) => {
+          return (
+            <CartConsumer>
+              {(cart) => (
+                <h1>
+                  {" "}
+                  Component C: hello {person}, {cart}
+                </h1>
+              )}
+            </CartConsumer>
+          );
+        }}
       </PersonConsumer>
     </>
   );

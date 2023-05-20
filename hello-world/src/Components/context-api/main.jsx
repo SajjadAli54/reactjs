@@ -1,12 +1,15 @@
 import React from "react";
 import A from "./A";
 
-import { PersonProvider } from "./personContext";
+import { PersonProvider, CartProvider } from "./personContext";
 
 function Main() {
   return (
     <PersonProvider value={"Ali"}>
-      <A />
+      <CartProvider value={"Cart"}>
+        <h1>Component Main</h1>
+        <A />
+      </CartProvider>
     </PersonProvider>
   );
 }
