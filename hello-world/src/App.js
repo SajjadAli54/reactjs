@@ -1,11 +1,10 @@
 import "./App.css";
-import SignupClass from "./Components/forms/class-signup";
-import FormikComponent from "./Components/forms/formik";
+import SignupUsingFormik from "./Components/forms/formik_further";
 
 function App() {
   return (
     <div className="App">
-      <FormikComponent />
+      <SignupUsingFormik />
     </div>
   );
 }
