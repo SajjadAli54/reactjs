@@ -55,6 +55,14 @@ bar();
 
 When the `bar` function is called, a new frame is added to the call stack, and the console logs "bar". Then, the `foo` function is called, adding another frame to the stack, and logging "foo". When `foo` returns, its frame is removed from the stack, and execution resumes in the `bar` function, which also returns and is removed from the stack.
 
+```mermaid
+graph TB;
+  Script-->barFunction;
+  barFunction-->log("bar");
+  barFunction-->fooFunction;
+  fooFunction-->console.log("foo");
+```
+
 The message queue is a data structure that stores messages (or events) to be processed by the event loop. When an asynchronous operation completes, such as a network request or a timer, a message is added to the message queue. The event loop checks the message queue for new messages and adds them to the call stack when it is empty.
 
 For example, consider the following code:
@@ -514,3 +522,8 @@ function increment() {
 ```
 
 This function modifies the value of the variable "x" outside of its scope, which is a side effect. Additionally, each time it is called, it returns a different output, which means it is not deterministic. Therefore, it is not a pure function.
+
+<p style="display: none;">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true });</script>
+</p>
