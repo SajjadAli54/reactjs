@@ -42,19 +42,34 @@ form {
   margin: 0 auto;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
+div{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+label{
+  display: inline-block;
+  width: 150px;
+  text-align: right;
+  margin-right: 10px;
+
 }
 
 input[type="text"],
 input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="password"],
 textarea {
+  display: inline-block;
   padding: 5px;
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin: 10px;
 }
 
 input[type="submit"] {

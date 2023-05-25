@@ -3,96 +3,137 @@ import React, { Component } from "react";
 export class SignupClass extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      fullname: "",
+      username: "",
+      password: "",
       email: "",
+      isMarried: false,
       gender: "",
-      about: "",
-      male: false,
-      react: false,
-      typescript: false,
-      language: ["urdu", "english"],
-      country: "",
+      city: "",
+      languages: [],
     };
-
-    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
-    // Event Synthesize object: event
-    let { name, value, type, checked, selectedOptions } = event.target;
-    if (type === "checkbox") value = checked;
-    else if (name === "language")
+  handleChange = (e) => {
+    let { name, type, value, checked, selectedOptions } = e.target;
+
+    if (type === "checkbox") {
+      value = checked;
+    } else if (type === "select-multiple") {
       value = Array.from(selectedOptions, (option) => option.value);
-    this.setState({ [name]: value });
-  }
+    }
+
+    this.setState({
+      [name]: value,
+    });
+  };
 
   render() {
     return (
       <>
-        <h1>Register</h1>
-        <p>{JSON.stringify(this.state)}</p>
+        <h1>Signup</h1>
+        <br />
         <form>
-          <label>Name: </label>
-          <input
-            type="text"
-            name="fullname"
-            value={this.state.fullname}
-            onChange={this.handleChange}
-          />
+          <div>
+            <label htmlFor="username">Username</label>
+            <input
+              id="username"
+              type="text"
+              name="username"
+              value={this.state.username}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="isMarried">Married</label>
+            <input
+              id="isMarried"
+              type="checkbox"
+              name="isMarried"
+              checked={this.state.isMarried}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <label>Gender</label>
+            <div>
+              <input
+                id="male"
+                type="radio"
+                name="gender"
+                value="Male"
+                onChange={this.handleChange}
+              />
+              <label htmlFor="male">Male</label>
+            </div>
+            <div>
+              <input
+                id="female"
+                type="radio"
+                name="gender"
+                value="Female"
+                onChange={this.handleChange}
+              />
+              <label htmlFor="female">Female</label>
+            </div>
+          </div>
 
-          <label>Email: </label>
-          <input
-            type="email"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
+          <div>
+            <label htmlFor="city">City</label>
+            <select
+              id="city"
+              name="city"
+              value={this.state.city}
+              onChange={this.handleChange}
+            >
+              <option value="">Select City</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Bangalore">Bangalore</option>
+            </select>
+          </div>
 
-          <label>About me</label>
-          <textarea
-            type="text"
-            name="about"
-            value={this.state.about}
-            onChange={this.handleChange}
-          />
+          <div>
+            <label htmlFor="languages">Languages</label>
+            <select
+              id="languages"
+              name="languages"
+              value={this.state.languages}
+              onChange={this.handleChange}
+              multiple
+            >
+              <option value="Sindhi">Sindhi</option>
+              <option value="Urdu">Urdu</option>
+              <option value="Hindi">Hindi</option>
+              <option value="English">English</option>
+              <option value="Kannada">Kannada</option>
+              <option value="Tamil">Tamil</option>
+            </select>
+          </div>
 
-          <label>Skills</label>
-          <label>React:</label>
-          <input
-            type="checkbox"
-            name="react"
-            checked={this.state.react}
-            onChange={this.handleChange}
-          />
-          <label>Typescript:</label>
-          <input
-            type="checkbox"
-            name="typescript"
-            checked={this.state.typescript}
-            onChange={this.handleChange}
-          />
-
-          <label>Gender</label>
-          <input type="radio" name="male" value="Male" />
-          <label>Male</label>
-          <input type="radio" name="male" value="female" />
-          <label>Female</label>
-
-          <label>Language</label>
-          <select
-            name="language"
-            value={this.state.language}
-            onChange={this.handleChange}
-            multiple
-          >
-            <option value="urdu">Urdu</option>
-            <option value="english">English</option>
-            <option value="vietnamese">Vietnamese</option>
-            <option value="japanese">Japanese</option>
-          </select>
-
-          <input type="submit" value="Submit" />
+          <button type="submit">Submit</button>
+          <p>{JSON.stringify(this.state)}</p>
         </form>
       </>
     );
