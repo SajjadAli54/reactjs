@@ -12,17 +12,15 @@ export default function Social() {
 
   /**
    * useEffect as componentDidMount
-   *  - useEffect(() => {}, [])
+   *  - useEffect(callback)
    */
   useEffect(() => {
     console.log(`onMount ${resourceType}`);
     window.addEventListener("resize", handleResize);
 
     // clean up function
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+    return () => window.removeEventListener("resize", handleResize);
+  });
 
   /**
    * useEffect as componentDidUpdate

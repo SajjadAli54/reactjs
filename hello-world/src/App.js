@@ -4,11 +4,12 @@ import UseFunctional from "./Components/defaultArguments/functional";
 import ClassComponent from "./Components/defaultArguments/classCom";
 import Counter from "./Components/reducers/reducers";
 import FC from "./Components/defaultArguments/fc";
+import { MyComponent } from "./Components/this_binding/component";
 
 function App() {
   return (
     <div className="App">
-      <FC name={"Ali"} />
+      <MyComponent />
     </div>
   );
 }
