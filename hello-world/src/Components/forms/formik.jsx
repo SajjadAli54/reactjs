@@ -1,5 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 function FormikComponent() {
   const initialValues = {
@@ -10,24 +11,13 @@ function FormikComponent() {
     gender: "",
     languages: [],
   };
-  const validate = (values) => {
-    let errors = {};
-    if (!values.username) {
-      errors.username = "Required";
-    }
-    if (!values.password) {
-      errors.password = "Required";
-    } else if (values.password.length < 8) {
-      errors.password = "Password must be atleast 8 characters long";
-    }
-    if (!values.email) {
-      errors.email = "Required";
-    }
-    return errors;
-  };
   const formik = useFormik({
     initialValues,
-    validate,
+    validationSchema: Yup.object({
+      username: Yup.string().ensure().required("Required"),
+      password: Yup.string().ensure().required("Required").min(8, "Too Short"),
+      email: Yup.string().ensure().required("Required").email("Invalid Email"),
+    }),
     onSubmit: (values) => {
       console.log("Form data", values);
     },
