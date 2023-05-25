@@ -188,53 +188,63 @@ In React, default props are used to provide default values for a component's pro
 To define default props for a component, you can use the "defaultProps" property. Here's an example:
 
 ```jsx
-class MyComponent extends React.Component {
-  static defaultProps = {
-    color: "red",
-    size: 10,
-    disabled: false,
-  };
+import React, { Component } from "react";
 
+export class ClassComponent extends Component {
   render() {
     return (
-      <div>
-        <p>Color: {this.props.color}</p>
-        <p>Size: {this.props.size}</p>
-        <p>Disabled: {this.props.disabled.toString()}</p>
-      </div>
+      <h1>
+        {`Name: ${this.props.name}, Age: ${this.props.age}, Married: ${this.props.isMarried}`}
+      </h1>
     );
   }
 }
+
+ClassComponent.defaultProps = {
+  name: "Default",
+  age: 0,
+  isMarried: false,
+};
+
+export default ClassComponent;
 ```
 
-In this example, we define default props for the "color", "size", and "disabled" props. If these props are not specified by the parent component, the default values will be used instead.
-
-If a prop is specified by the parent component, its value will override the default value. For example:
-
-```jsx
-<MyComponent size={20} />
-```
-
-In this case, the "size" prop is specified with a value of 20, so the default value of 10 is ignored.
+If a prop is specified by the parent component, its value will override the default value.
 
 Default props can also be defined for functional components using the "defaultProps" property:
 
 ```jsx
-function MyFunctionalComponent(props) {
-  return (
-    <div>
-      <p>Color: {props.color}</p>
-      <p>Size: {props.size}</p>
-      <p>Disabled: {props.disabled.toString()}</p>
-    </div>
-  );
+import React from "react";
+
+function FC({ name, age, isMarried }) {
+  return <h1>{`Name: ${name}, Age: ${age}, Married: ${isMarried}`}</h1>;
 }
 
-MyFunctionalComponent.defaultProps = {
-  color: "red",
-  size: 10,
-  disabled: false,
+FC.defaultProps = {
+  name: "Default",
+  age: 0,
+  isMarried: false,
 };
+
+export default FC;
 ```
 
-In this example, we define default props for a functional component called "MyFunctionalComponent". These default props will be used if the parent component does not specify a value for a particular prop.
+Or by
+
+```jsx
+import React from "react";
+
+function Functional({ name = "Default", age = 0, isMarried = false }) {
+  return <h1>{`Name: ${name}, Age: ${age}, Married: ${isMarried}`}</h1>;
+}
+
+export default function UseFunctional() {
+  return (
+    <>
+      <Functional />
+      <Functional name="John" age={25} isMarried={true} />
+      <Functional name="Jane" age={22} />
+    </>
+  );
+}
+```
