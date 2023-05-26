@@ -27,7 +27,7 @@ const reducer = (state, action) => {
       return [
         ...state,
         {
-          title: `Test${state.length}`,
+          title: `Test ${state.length}`,
           content: `Render Test ${state.length} component`,
           route: `/route${state.length}`,
         },
