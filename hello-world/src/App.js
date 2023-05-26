@@ -1,5 +1,5 @@
 import "./App.css";
-import Practice from "./Components/context-api/practice/practice";
+import Practice from "./Components/reducers/practice/practice";
 
 function App() {
   return (
