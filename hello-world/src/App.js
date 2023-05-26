@@ -1,10 +1,10 @@
-import "./App.css";
-import Practice from "./Components/reducers/practice/practice";
+// import "./App.css";
+import Main from "./Components/routing/dynamic/main";
 
 function App() {
   return (
     <div className="App">
-      <Practice />
+      <Main />
     </div>
   );
 }
