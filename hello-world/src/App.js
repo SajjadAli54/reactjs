@@ -1,10 +1,10 @@
 // import "./App.css";
-import Main from "./Components/routing/dynamic/main";
 
+import Social from "./Components/social/Social";
 function App() {
   return (
     <div className="App">
-      <Main />
+      <Social />
     </div>
   );
 }
