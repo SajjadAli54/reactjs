@@ -1,10 +1,11 @@
-// import "./App.css";
+import "./App.css";
 
-import Social from "./Components/social/Social";
+import UseCustom from "./Components/custom_hooks/useFetch";
+
 function App() {
   return (
     <div className="App">
-      <Social />
+      <UseCustom />
     </div>
   );
 }
