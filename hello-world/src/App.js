@@ -1,10 +1,10 @@
 import "./App.css";
-import Main from "./Components/routing/practice/practice";
+import Practice from "./Components/context-api/practice/practice";
 
 function App() {
   return (
     <div className="App">
-      <Main />
+      <Practice />
     </div>
   );
 }
