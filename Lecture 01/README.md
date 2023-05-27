@@ -65,6 +65,37 @@ function foo() {
 console.log(x); // undefined
 ```
 
+```js
+/**
+ * var is function scoped
+ * var is hoisted
+ * var can be redeclared
+ * var can be updated
+ * var is undefined when accessing a variable before it's declared
+ * var is undefined when accessing a variable that doesn't exist
+ * var can be declared without being initialized
+ *
+ * var should not be used
+ */
+function method() {
+  console.log(x);
+  var x = 10;
+  if (true) {
+    var x = 20;
+    console.log(x);
+  }
+  console.log(x);
+}
+
+method();
+/**
+ * Output:
+ * undefined
+ * 20
+ * 20
+ */
+```
+
 `let` and `const` were introduced in ES6 (ECMAScript 2015) and have block scope, meaning that a variable declared using `let` or `const` is only accessible within the block of code in which it was defined, including nested blocks.
 
 `let` is used to declare variables that can be reassigned a new value later in the code:
@@ -73,6 +104,34 @@ console.log(x); // undefined
 let x = 1;
 x = 2;
 console.log(x); // 2
+```
+
+```js
+/**
+ * let is block scoped
+ * let is not hoisted
+ * let can not be redeclared
+ * let can be updated
+ * let can be declared without initialization
+ * let can be declared in a block without affecting the outer scope
+ *
+ */
+function method() {
+  //   console.log(x); // ReferenceError: x is not defined
+  let x = 10;
+  if (true) {
+    let x = 20;
+    console.log(x);
+  }
+  console.log(x);
+}
+
+method();
+/**
+ * Output:
+ * 20
+ * 10
+ */
 ```
 
 `const` is used to declare variables that cannot be reassigned a new value. Once a `const` variable is assigned a value, it cannot be changed.
