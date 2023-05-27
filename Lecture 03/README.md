@@ -31,7 +31,7 @@ Highest paid job
 
 ---
 
-# Raectjs
+# Reactjs
 
 ## Creating react app and running
 
@@ -88,10 +88,9 @@ Types of Exports in React
 
 ## Default Export
 
--      Only one default export per file
--      Can be imported with any name
--      Can be imported without curly braces
--      Can be imported with or without curly braces
+- Only one default export per file
+- Can be imported with any name
+- Can be imported without curly braces
 
 ```jsx
 export default function Avatar() {
@@ -112,7 +111,7 @@ import Avatar from "./Components/Avatar";
 
 ## Named Export
 
--      Can be imported with curly braces
+- Can be imported with curly braces
 
 ```jsx
 export function Avatar2() {

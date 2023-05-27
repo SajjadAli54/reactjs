@@ -71,6 +71,10 @@ You can also configure other settings in Git, such as your default text editor a
 
 ```sh
 git config --global core.editor "code --wait"
+# For windows
+git config --global core.autocrlf true
+# For mac/linux
+git config --global core.autocrlf input
 ```
 
 - Set your preferred merge tool to KDiff3:
@@ -90,6 +94,12 @@ You can view your Git configuration settings at any time by running the followin
 
 ```sh
 git config --list
+```
+
+or via this, in file
+
+```sh
+git config --global -e
 ```
 
 This will display a list of all the Git configuration settings on your system, including your personal settings and any default settings that have been set by Git or other tools.
