@@ -23,3 +23,6 @@ const absolutePath3 = path.isAbsolute(
   "D:\\BSCS VIII\\EAD\\practice\\Lecture 09\\modules\\api\\users\\login"
 );
 console.log(absolutePath3); // true
+
+const ext = path.extname(__filename);
+console.log(ext); // .js
