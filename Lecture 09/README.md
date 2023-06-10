@@ -113,6 +113,8 @@ console.log(module);
 
 #### Builtin module
 
+##### fs module
+
 ```js
 const fs = require("fs");
 /**
@@ -122,6 +124,57 @@ const fs = require("fs");
  *
  */
 console.log(fs);
+
+fs.writeFileSync("test.txt", "Hello World");
+
+const data = fs.readFileSync("test.txt");
+console.log(data); // <Buffer 48 65 6c 6c 6f 20 57 6f 72 6c 64>
+console.log(data.toString());
+```
+
+##### Query String
+
+```js
+const queryString = require("querystring");
+const obj = {
+  name: "Sajjad Ali",
+  age: 23,
+};
+console.log("Original object " + JSON.stringify(obj)); // { name: 'Sajjad Ali', age: 23 }
+const str = queryString.stringify(obj);
+console.log("query string from object " + str); // name=Sajjad%20Ali&age=23
+const res = queryString.parse(str);
+console.log("Parsed: " + JSON.stringify(res)); // { name: 'Sajjad Ali', age: '23' }
+```
+
+##### path
+
+```js
+const path = require("path");
+
+const pathObj = path.parse(__filename);
+
+console.log(pathObj);
+
+const pathObj2 = path.join("api", "users", "login");
+console.log(pathObj2); // api\users\login
+
+const pathObj3 = path.join(__dirname, "api", "users", "login");
+console.log(pathObj3); // d:\BSCS VIII\EAD\practice\Lecture 09\modules\api\users\login
+
+const normalizedPath = path.normalize("api//users/login");
+console.log(normalizedPath); // api\users\login
+
+const absolutePath = path.isAbsolute("api//users/login");
+console.log(absolutePath); // false
+
+const absolutePath2 = path.isAbsolute(__filename);
+console.log(absolutePath2); // true
+
+const absolutePath3 = path.isAbsolute(
+  "D:\\BSCS VIII\\EAD\\practice\\Lecture 09\\modules\\api\\users\\login"
+);
+console.log(absolutePath3); // true
 ```
 
 #### Custom Modules
@@ -154,6 +207,19 @@ You can access it via following:
 
 ```js
 const express = require("express");
+```
+
+#### Multiple imports and combined export
+
+```js
+module.exports = {
+  name: "Sajjad Ali",
+  age: 23,
+
+  A: require("./A"),
+  B: require("./B"),
+  C: require("./C"),
+};
 ```
 
 ## Home Work
