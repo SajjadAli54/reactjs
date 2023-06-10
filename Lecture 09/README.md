@@ -1,12 +1,10 @@
 <div style="text-align: justify;">
 
-# Nodejs
-
 A runtime environment developed using C/C++ that contents google chrome v8 engine and used to execute javascript code outside the browser. V8 is really the fast engine to execute JS code.
 
 [JS Conf Youtube channel](https://www.youtube.com/@jsconf_)
 
-## Nodejs Architecture
+# Nodejs Architecture
 
 ---
 
@@ -58,7 +56,7 @@ The Node.js runtime architecture follows an event-driven, non-blocking I/O model
 
 Overall, the event-driven, non-blocking I/O model, along with the event loop, allows Node.js to handle multiple requests concurrently and efficiently utilize system resources, resulting in high performance and scalability.
 
-## Multithreading
+# Multithreading
 
 ---
 
@@ -66,7 +64,7 @@ We can achieve this using either child processes or clusters. It is not recommen
 
 For Streaming like apps, Nodejs is the best choice. For CRUD apps, you may choose any tool available.
 
-## Node version manager
+# Node version manager
 
 Node version manager commands
 
@@ -75,7 +73,7 @@ npm i -g nvm
 nvm ls
 ```
 
-## Global Object
+# Global Object
 
 ```js
 console.log("Hello World");
@@ -107,13 +105,13 @@ global.setTimeout(() => {
 console.log(module);
 ```
 
-### Module
+## Module
 
 ![Types of Modules](image/README/1686383268811.png)
 
-#### Builtin module
+### Builtin module
 
-##### fs module
+#### fs module
 
 ```js
 const fs = require("fs");
@@ -132,7 +130,7 @@ console.log(data); // <Buffer 48 65 6c 6c 6f 20 57 6f 72 6c 64>
 console.log(data.toString());
 ```
 
-##### Query String
+#### Query String
 
 ```js
 const queryString = require("querystring");
@@ -147,7 +145,7 @@ const res = queryString.parse(str);
 console.log("Parsed: " + JSON.stringify(res)); // { name: 'Sajjad Ali', age: '23' }
 ```
 
-##### path
+#### path
 
 ```js
 const path = require("path");
@@ -180,7 +178,7 @@ const ext = path.extname(__filename);
 console.log(ext); // .js
 ```
 
-##### Process
+#### Process
 
 ```js
 const process = require("process");
@@ -202,14 +200,14 @@ switch (num) {
 process.kill(process.pid);
 ```
 
-##### Child Process
+#### Child Process
 
 ```js
 const child_process = require("child_process");
 const res = child_process.spawn("notepad", ["processMod.js"]);
 ```
 
-#### Custom Modules
+### Custom Modules
 
 `lib.js` file
 
@@ -227,7 +225,7 @@ const lib = require("./lib");
 console.log(JSON.stringify(lib));
 ```
 
-#### Third Party Modules
+### Third Party Modules
 
 First Install the module via npm:
 
@@ -241,7 +239,7 @@ You can access it via following:
 const express = require("express");
 ```
 
-#### Multiple imports and combined export
+### Multiple imports and combined export
 
 ```js
 module.exports = {
@@ -254,7 +252,7 @@ module.exports = {
 };
 ```
 
-## Home Work
+# Home Work
 
 - Profiler Apis
 - Redux
@@ -265,7 +263,7 @@ module.exports = {
 
 Library is not executable. However, the packages are.
 
-## Request Methods
+# Request Methods
 
 [Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
 
@@ -275,3 +273,134 @@ Library is not executable. However, the packages are.
 - PATCH
 - PUT
 - DELETE
+
+---
+
+# Http Server
+
+## Basic Server app
+
+Run the following js code and then open browser.
+
+Launch
+
+[localhost:3000/](localhost:3000/)
+
+[localhost:3000/about](localhost:3000/about)
+
+[localhost:3000/dummy](localhost:3000/dummy)
+
+```js
+const http = require("http");
+
+const server = http.createServer((request, response) => {
+  console.log(request.url);
+  switch (request.url) {
+    case "/":
+      response.write("Hello World");
+      break;
+    case "/about":
+      response.write("About Page");
+      break;
+    default:
+      response.write("Not Found");
+      break;
+  }
+
+  response.end();
+});
+
+server.listen(3000, () => {
+  console.log("Server is running on port 3000");
+});
+```
+
+## Html page using http server
+
+`home.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About</title>
+  </head>
+
+  <body>
+    <h1>Hello World</h1>
+  </body>
+</html>
+```
+
+`about.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>About Page</h1>
+  </body>
+</html>
+```
+
+`notFound.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>Page Not Found</h1>
+  </body>
+</html>
+```
+
+`http.js`
+
+```js
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+
+const server = http.createServer((request, response) => {
+  console.log(request.url);
+  switch (request.url) {
+    case "/":
+      sendResponse(response, "home.html");
+      break;
+    case "/about":
+      sendResponse(response, "about.html");
+      break;
+    default:
+      sendResponse(response, "notFound.html");
+      break;
+  }
+});
+
+function sendResponse(response, filename) {
+  const joinedPath = path.join(__dirname, filename);
+  const data = fs.readFileSync(joinedPath).toString();
+  response.end(data);
+}
+
+server.listen(3000, () => {
+  console.log("Server is running on port 3000");
+});
+```
+
+---
+
+# Template Engines
