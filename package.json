@@ -13,7 +13,5 @@
   "author": "Sajjad Ali",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
-    "nvm": "^0.0.4"
   }
 }
