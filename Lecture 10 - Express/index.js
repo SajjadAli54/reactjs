@@ -1,29 +1,25 @@
 const express = require("express");
-const path = require("path");
 const bodyParser = require("body-parser");
-const app = express();
 
+const app = express();
 app.use(bodyParser.json());
+app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.render("index", { title: "Home" });
 });
 
-app.get("/about", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "about.html"));
+app.get("/products", (req, res) => {
+  const products = [
+    { id: 1, name: "Product 1", price: 1000 },
+    { id: 2, name: "Product 2", price: 2000 },
+    { id: 3, name: "Product 3", price: 3000 },
+    { id: 4, name: "Product 4", price: 4000 },
+    { id: 5, name: "Product 5", price: 5000 },
+  ];
+  res.render("products", { title: "Products", products: products });
 });
 
-app.get("/student", (req, res) => {
-  res.json({ name: "John", age: 23, city: "New York" });
+app.listen(3000, () => {
+  console.log("Server is running on port 3000.");
 });
-
-app.post("/student/save", (req, res) => {
-  console.log(req.body);
-  res.json(req.body);
-});
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "404.html"));
-});
-
-app.listen(3000, () => console.log("Server running on port 3000"));
