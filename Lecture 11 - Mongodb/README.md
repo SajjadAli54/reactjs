@@ -218,6 +218,10 @@ db.students.distinct("name");
 db.students.findOne({ age: 20 });
 // Doc having name = "Daniel" and age = 22
 db.students.find({ age: 22, name: "Daniel" }); // Checks both conditions must be true
+
+db.students.find({ name: { $eq: "Sophia" } });
+
+db.students.find({ age: 22, "address.city": "London" });
 // Age > 20
 db.students.find({ age: { $gt: 20 } });
 
@@ -233,6 +237,16 @@ db.students.find({ $or: [{ name: "Daniel" }, { name: "Sophia" }] });
 
 db.students.findOne({ $or: [{ name: "Daniel" }, { name: "Sophia" }] }).address
   .city;
+
+db.students.find({ name: { $in: ["Sophia", "Daniel"] } });
+```
+
+### Projection
+
+```js
+db.students.find({}, { name: 1, age: 1, _id: 0 });
+
+db.students.find({}, { _id: 0, subjects: 0 });
 ```
 
 ## Updating the documents
@@ -255,4 +269,205 @@ db.students.updateOne(
 db.students.deleteOne({ name: "Shahid" });
 
 db.students.deleteMany({});
+```
+
+## Aggregation
+
+# Mongoose
+
+## Project Setup
+
+```sh
+npm init
+npm i mongoose express ejs
+npm i --dev nodemon
+```
+
+Create a folder named `models` and add `product.js` file
+
+```js
+// use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+const connectionString = "mongodb://127.0.0.1:27017/ead";
+
+const mongoose = require("mongoose");
+mongoose.connect(connectionString);
+
+const Schema = mongoose.Schema;
+
+const ProductSchema = new Schema({
+  name: String,
+  price: Number,
+  qty: Number,
+  manufacturer: String,
+});
+
+module.exports = mongoose.model("product", ProductSchema);
+```
+
+`index.js` code
+
+```js
+const express = require("express");
+const app = express();
+
+const Product = require("./models/product");
+
+app.use(express.json());
+app.use(express.urlencoded());
+app.set("view engine", "ejs");
+
+app.get("/", (req, res) => {
+  res.render("index");
+});
+
+app.get("/products", (req, res) => {
+  Product.find().then((products) => {
+    res.render("products", {
+      title: "Products",
+      products: products,
+    });
+  });
+});
+
+app.get("/product/new", (req, res) => {
+  res.render("newProduct");
+});
+
+// Form data is in urlencoded form
+app.post("/product/save", (req, res) => {
+  const product = new Product(req.body);
+  product
+    .save()
+    .then((product) => {
+      if (!product) return res.redirect("/product/new");
+      res.redirect("/products");
+    })
+    .catch((error) => {
+      console.log(error);
+      res.redirect("/product/new");
+    });
+});
+
+app.listen(3000, () => {
+  console.log("Server is running on port 3000.");
+});
+```
+
+`newProduct.ejs` file
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Product</title>
+  </head>
+
+  <body>
+    <header><%-include("navbar")%></header>
+    <form action="/product/save" method="post">
+      <label
+        >Product Name:
+        <input type="text" name="name" placeholder="Enter product name" />
+      </label>
+      <br />
+      <br />
+
+      <label
+        >Price:
+        <input type="number" name="price" placeholder="Enter product price" />
+      </label>
+      <br />
+      <br />
+
+      <label
+        >Quantity:
+        <input type="number" name="qty" placeholder="Enter product quantity" />
+      </label>
+      <br />
+      <br />
+
+      <label
+        >Manufacturer:
+        <input
+          type="text"
+          name="manufacturer"
+          placeholder="Enter Manufacturer"
+        />
+      </label>
+      <br />
+      <br />
+
+      <input type="submit" value="Save" />
+    </form>
+  </body>
+</html>
+```
+
+`products.ejs` file
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <%-include("navbar")%>
+        <h1>
+            <%=title%>
+        </h1>
+        <table>
+            <thead>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Manufacturer</th>
+            </thead>
+            <tbody>
+
+                <% for(let i=0; i<products.length; i++) { %>
+                    <tr>
+                        <td>
+                            <%= products[i].id %>
+                        </td>
+                        <td>
+                            <%= products[i].name %>
+                        </td>
+                        <td>$<%= products[i].price %>
+                        </td>
+                        <td>
+                            <%= products[i].qty %>
+                        </td>
+                        <td>
+                            <%= products[i].manufacturer %>
+                        </td>
+
+                    </tr>
+                    <% } %>
+
+
+
+            </tbody>
+        </table>
+
+</body>
+
+</html>
+```
+
+`navbar.ejs` file
+
+```html
+<ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/products">Products</a></li>
+  <li><a href="/product/new">Add new Product</a></li>
+</ul>
 ```

@@ -1,4 +1,4 @@
-db.students.insertMany([
+const data = [
   {
     name: "John",
     age: 20,
@@ -89,4 +89,4 @@ db.students.insertMany([
       country: "UK",
     },
   },
-]);
+];

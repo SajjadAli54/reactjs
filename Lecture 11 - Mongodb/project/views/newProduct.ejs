@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Product</title>
+</head>
+
+<body>
+    <header>
+        <%-include("navbar")%>
+
+    </header>
+    <form action="/product/save" method="post">
+        <label>Product Name: <input type="text" name="name" placeholder="Enter product name" />
+        </label>
+        <br />
+        <br />
+
+        <label>Price: <input type="number" name="price" placeholder="Enter product price" />
+        </label>
+        <br />
+        <br />
+
+        <label>Quantity: <input type="number" name="qty" placeholder="Enter product quantity" />
+        </label>
+        <br />
+        <br />
+
+        <label>Manufacturer: <input type="text" name="manufacturer" placeholder="Enter Manufacturer" />
+        </label>
+        <br />
+        <br />
+
+        <input type="submit" value="Save" />
+
+    </form>
+</body>
+
+</html>
