@@ -1,0 +1,258 @@
+# Databases
+
+When considering databases and their types, it's important to understand that the "better" option for write, read, or management can vary depending on the specific requirements and characteristics of your application or use case. Here's a general overview:
+
+1. Write Performance:
+
+   - For high-volume write operations, NoSQL databases such as MongoDB, Cassandra, or Apache HBase are often preferred. They are designed to handle massive write scalability and offer high throughput for write-heavy workloads.
+   - However, some relational databases like PostgreSQL and MySQL have also made significant improvements in their write performance and can handle moderate to heavy write loads efficiently.
+
+2. Read Performance:
+
+   - Read performance can be influenced by factors such as data modeling, indexing strategies, and caching mechanisms.
+   - Relational databases like PostgreSQL, MySQL, and Oracle are commonly used for read-intensive workloads, as they provide efficient indexing options, query optimization, and caching mechanisms to enhance read performance.
+   - NoSQL databases, especially those optimized for read-heavy scenarios like Apache Cassandra or Elasticsearch, can also provide excellent read performance by distributing data across multiple nodes.
+
+3. Management and Features:
+   - Relational databases such as PostgreSQL, MySQL, and Oracle generally offer more mature and robust management tools and support. They have a long history and well-established ecosystems with a wide range of tools, libraries, and frameworks.
+   - NoSQL databases often have simpler management requirements, as they may not require complex schemas or transactions. However, the management tools and support may not be as extensive as those available for relational databases.
+
+It's essential to note that the suitability of a particular database for write, read, or management also depends on factors like data size, expected growth, data complexity, scalability requirements, and the expertise of your development team.
+
+In some cases, a combination of databases, such as using a relational database for structured data and a NoSQL database for unstructured data or caching, might be appropriate. It's crucial to thoroughly analyze your specific use case and consider factors like data model, query patterns, scalability needs, and management requirements to determine the best-suited database or combination of databases for your application.
+
+# Postgre and MySQL
+
+Both PostgreSQL (Postgres) and MySQL are popular relational database management systems (RDBMS) that have been widely used for many years. While both databases have similar functionality and can handle read and write operations effectively, they do have some differences that can affect their performance in certain scenarios. Let's discuss them:
+
+1. Write Performance:
+
+   - MySQL traditionally had an advantage in write-intensive workloads, as it offered better performance for high-volume writes due to its simpler architecture and lighter transactional overhead.
+   - However, PostgreSQL has made significant improvements in recent versions and has closed the gap in terms of write performance. It now provides comparable write speeds, especially for moderate to heavy write loads.
+
+2. Read Performance:
+
+   - Both databases are capable of handling read-intensive workloads effectively. The performance differences between them in read operations are generally negligible and highly dependent on the specific use case and configuration.
+
+3. Management and Features:
+
+   - PostgreSQL is known for its rich set of features, extensibility, and advanced data types. It supports a wide range of data types, including JSON, array types, and spatial data. PostgreSQL also offers more advanced functionalities like advanced indexing options, complex queries, and powerful built-in functions.
+   - MySQL, on the other hand, has a simpler architecture and is generally considered easier to manage. It has a larger user base and a robust ecosystem of tools and libraries. MySQL is often favored in scenarios where ease of use and simplicity are important.
+
+4. Data Integrity and Concurrency:
+   - PostgreSQL has a strong emphasis on data integrity and provides advanced concurrency control mechanisms. It supports multi-version concurrency control (MVCC), which allows for high levels of concurrent read and write operations while maintaining data consistency.
+   - MySQL traditionally used a simpler locking mechanism, but it has also introduced support for MVCC in recent versions, improving its concurrency capabilities.
+
+In summary, both PostgreSQL and MySQL are powerful RDBMS options with their own strengths. PostgreSQL offers more advanced features and extensibility, making it suitable for complex data models and scenarios where data integrity and advanced functionality are crucial. MySQL, on the other hand, is often chosen for its ease of use, simplicity, and historical advantage in write-intensive workloads. However, it's important to note that performance and suitability can vary depending on specific use cases, dataset sizes, hardware configurations, and tuning optimizations.
+
+# Mongodb Theory
+
+MongoDB is a popular open-source, document-oriented database management system. It falls under the category of NoSQL (non-relational) databases and is designed to handle large amounts of unstructured data. MongoDB provides high scalability, performance, and flexibility for managing and querying data.
+
+Key features of MongoDB include:
+
+1. Document-Oriented: MongoDB stores data in flexible, JSON-like documents called BSON (Binary JSON). Documents can have varying structures, allowing for easy representation of complex relationships and hierarchical data.
+
+2. Scalability: MongoDB scales horizontally by sharding, which involves distributing data across multiple servers. This allows for the handling of large datasets and high traffic loads.
+
+3. Flexible Data Model: MongoDB's flexible schema enables developers to iterate quickly and adapt to evolving data requirements. Fields can vary across documents, and data can be easily modified or extended.
+
+4. High Performance: MongoDB utilizes memory-mapped storage and provides indexes to support efficient querying. It also supports automatic sharding and replication for improved performance and fault tolerance.
+
+5. Rich Query Language: MongoDB supports a powerful query language with features like ad-hoc queries, indexing, sorting, and aggregation. It also provides support for geospatial queries, text search, and full-text search.
+
+6. Replication and High Availability: MongoDB supports replica sets, which are self-healing clusters of MongoDB instances. Replica sets provide data redundancy, automatic failover, and high availability.
+
+7. Distributed Transactions: MongoDB introduced multi-document ACID (Atomicity, Consistency, Isolation, Durability) transactions in version 4.0, allowing multiple operations to be grouped together in a single transaction.
+
+8. Integration and Ecosystem: MongoDB provides drivers for various programming languages, making it easy to integrate with different frameworks and applications. It also integrates with popular analytics and visualization tools.
+
+MongoDB is commonly used for a wide range of applications, including content management systems, real-time analytics, IoT (Internet of Things), social media platforms, and more.
+
+## Mongodb and SQL relation
+
+- Table as Collection
+- Row as Document
+
+# Basic Commands
+
+## Show databases
+
+```
+show dbs;
+show databases;
+```
+
+## Creating and using the database
+
+If you want to create a new database then there should be at least one collection in it.
+
+```js
+use bookstore;
+db.createCollection("books");
+show databases;
+show collections;
+```
+
+## Insert data in collection
+
+```js
+db.createCollection("test");
+db.test.find();
+db.test.insertMany([{ name: "KD" }, { price: 123, product: "ABC" }]);
+
+db.students.insertOne({
+  name: "Ibrahim",
+  age: 23,
+  subjects: ["EAD", "PDC"],
+  address: { city: "Hyderabad", country: "Pakistan" },
+});
+db.students.insertMany([
+  {
+    name: "John",
+    age: 20,
+    subjects: ["Math", "Science"],
+    address: {
+      city: "New York",
+      country: "USA",
+    },
+  },
+  {
+    name: "Alice",
+    age: 22,
+    subjects: ["History", "English"],
+    address: {
+      city: "London",
+      country: "UK",
+    },
+  },
+  {
+    name: "Bob",
+    age: 19,
+    subjects: ["Math", "Physics"],
+    address: {
+      city: "Paris",
+      country: "France",
+    },
+  },
+  {
+    name: "Eva",
+    age: 21,
+    subjects: ["Biology", "Chemistry"],
+    address: {
+      city: "Berlin",
+      country: "Germany",
+    },
+  },
+  {
+    name: "David",
+    age: 20,
+    subjects: ["Math", "English"],
+    address: {
+      city: "New York",
+      country: "USA",
+    },
+  },
+  {
+    name: "Sarah",
+    age: 23,
+    subjects: ["Physics", "Chemistry"],
+    address: {
+      city: "London",
+      country: "UK",
+    },
+  },
+  {
+    name: "Michael",
+    age: 19,
+    subjects: ["History", "Geography"],
+    address: {
+      city: "Paris",
+      country: "France",
+    },
+  },
+  {
+    name: "Emily",
+    age: 20,
+    subjects: ["Biology", "English"],
+    address: {
+      city: "Berlin",
+      country: "Germany",
+    },
+  },
+  {
+    name: "Daniel",
+    age: 22,
+    subjects: ["Math", "Chemistry"],
+    address: {
+      city: "New York",
+      country: "USA",
+    },
+  },
+  {
+    name: "Sophia",
+    age: 21,
+    subjects: ["Physics", "English"],
+    address: {
+      city: "London",
+      country: "UK",
+    },
+  },
+]);
+```
+
+## Retrieving the documents
+
+```js
+db.students.find();
+db.students.findOne();
+db.students.find().count();
+
+db.students.distinct("name");
+```
+
+### Conditional retrieving
+
+```js
+// Doc having age 20
+db.students.findOne({ age: 20 });
+// Doc having name = "Daniel" and age = 22
+db.students.find({ age: 22, name: "Daniel" }); // Checks both conditions must be true
+// Age > 20
+db.students.find({ age: { $gt: 20 } });
+
+// Age >= 20
+b.students.find({ age: { $gte: 20 } });
+
+// Age != 20
+db.students.find({ age: { $ne: 20 } });
+
+db.students.find({ $and: [{ age: { $gt: 20 } }, { age: { $lt: 22 } }] });
+
+db.students.find({ $or: [{ name: "Daniel" }, { name: "Sophia" }] });
+
+db.students.findOne({ $or: [{ name: "Daniel" }, { name: "Sophia" }] }).address
+  .city;
+```
+
+## Updating the documents
+
+```js
+db.students.updateOne(
+  { _id: ObjectId("6494207101574b73fb117ddb") },
+  { $set: { age: 30 } }
+);
+
+db.students.updateOne(
+  { _id: ObjectId("6494207101574b73fb117ddb") },
+  { $set: { address: { city: "Sukkur", country: "Pakistan" } } }
+);
+```
+
+## Deleting documents
+
+```js
+db.students.deleteOne({ name: "Shahid" });
+
+db.students.deleteMany({});
+```
