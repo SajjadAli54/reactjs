@@ -472,7 +472,7 @@ app.listen(3000, () => {
 </ul>
 ```
 
-# Files uploader (Express and butler)
+# Files uploader (Express and Multy)
 
 # Middle wear
 
@@ -514,9 +514,31 @@ CORS: Cross Origin that is allowed in header as domains
 
 Normally browsers do not allow CORS.
 
+How to use JWT and handle CORS?
+
 ```js
 app.get("/products/get", async (req, res) => {
   const products = await Product.find();
   res.json(products);
 });
 ```
+
+# Socket.io
+
+Two way communication
+Master(Client)-Slave(Server) Architecture in web
+
+Every request has TTL (Time-To-Live).
+Short Polling and Long Polling
+
+Pull Request and Push Request
+
+Client pulls the data request
+Server pushes the data.
+
+Client sends request, server responds normally!
+What is going on server, client does not know normally.
+
+SSE Server Sent Event: Data from Server to Client Flow
+
+# Design Patterns
