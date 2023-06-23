@@ -2,41 +2,31 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%- include("./partials/header.ejs") %>
+        <title>Products</title>
 </head>
 
 <body>
-    <%-include("navbar")%>
+    <%- include("./partials/navbar") %>
         <h1>
-            <%=title%>
+            Products
         </h1>
         <table>
             <thead>
-                <th>Id</th>
                 <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Manufacturer</th>
+                <th>Details</th>
             </thead>
             <tbody>
 
                 <% for(let i=0; i<products.length; i++) { %>
                     <tr>
                         <td>
-                            <%= products[i].id %>
-                        </td>
-                        <td>
                             <%= products[i].name %>
                         </td>
-                        <td>$<%= products[i].price %>
-                        </td>
                         <td>
-                            <%= products[i].qty %>
-                        </td>
-                        <td>
-                            <%= products[i].manufacturer %>
+                            <a href="product/<%= products[i]._id %> %>">
+                                Full Detail
+                            </a>
                         </td>
 
                     </tr>

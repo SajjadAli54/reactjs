@@ -11,12 +11,11 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/products", (req, res) => {
-  Product.find().then((products) => {
-    res.render("products", {
-      title: "Products",
-      products: products,
-    });
+app.get("/products", async (req, res) => {
+  const products = await Product.find();
+  res.render("products", {
+    title: "Products",
+    products: products,
   });
 });
 
@@ -24,8 +23,29 @@ app.get("/product/new", (req, res) => {
   res.render("newProduct");
 });
 
+app.get("/product/:pid", async (req, res) => {
+  console.log(req.params.pid);
+  const product = await Product.findById(req?.params?.pid);
+  res.render("product-details", {
+    product: product,
+  });
+});
+
+app.get("/products/get", async (req, res) => {
+  const products = await Product.find();
+  res.json(products);
+});
+
+const validateProductMiddleWare = (req, res, next) => {
+  const { name, price, qty, manufacturer } = req.body;
+
+  if (!name || !price || !qty || !manufacturer)
+    return res.redirect("/product/save");
+  next();
+};
+
 // Form data is in urlencoded form
-app.post("/product/save", (req, res) => {
+app.post("/product/save", validateProductMiddleWare, (req, res) => {
   const product = new Product(req.body);
   product
     .save()

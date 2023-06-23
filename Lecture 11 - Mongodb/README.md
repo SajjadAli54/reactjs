@@ -471,3 +471,52 @@ app.listen(3000, () => {
   <li><a href="/product/new">Add new Product</a></li>
 </ul>
 ```
+
+# Files uploader (Express and butler)
+
+# Middle wear
+
+Intercept the request or response
+Request comes from client and operations are performed before the route
+
+```js
+const validateProductMiddleWare = (req, res, next) => {
+  const { name, price, qty, manufacturer } = req.body;
+
+  if (!name || !price || !qty || !manufacturer)
+    return res.redirect("/product/save");
+  next();
+};
+
+// Form data is in urlencoded form
+app.post("/product/save", validateProductMiddleWare, (req, res) => {
+  const product = new Product(req.body);
+  product
+    .save()
+    .then((product) => {
+      if (!product) return res.redirect("/product/new");
+      res.redirect("/products");
+    })
+    .catch((error) => {
+      console.log(error);
+      res.redirect("/product/new");
+    });
+});
+```
+
+# API Creation
+
+JWT (JSON web token) tokens are used for user authentication most of the times. It is a package.
+Tokens are expired after some time.
+Not everyone should access the api
+
+CORS: Cross Origin that is allowed in header as domains
+
+Normally browsers do not allow CORS.
+
+```js
+app.get("/products/get", async (req, res) => {
+  const products = await Product.find();
+  res.json(products);
+});
+```

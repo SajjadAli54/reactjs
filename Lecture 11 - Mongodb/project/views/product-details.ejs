@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("./partials/header.ejs") %>
+        <title>Product Details</title>
+</head>
+
+<body>
+    <header>
+
+        <%- include("./partials/navbar") %>
+    </header>
+
+    <div>
+        <label>Product Name: <%= product.name %>
+        </label>
+        <br />
+
+        <label>Price: <%= product.price %>
+        </label>
+        <br />
+
+        <label>Quantity: <%= product.qty %>
+        </label>
+        <br />
+
+        <label>Manufacturer: <%= product.manufacturer %>
+        </label>
+
+    </div>
+
+</body>
+
+</html>
