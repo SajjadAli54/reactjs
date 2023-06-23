@@ -145,6 +145,20 @@ const res = queryString.parse(str);
 console.log("Parsed: " + JSON.stringify(res)); // { name: 'Sajjad Ali', age: '23' }
 ```
 
+```js
+const querystring = require("querystring");
+const obj = {
+  name: "Rahul",
+  age: 20,
+  city: "Delhi",
+};
+const str = querystring.stringify(obj, ";", ":");
+console.log(str);
+
+const obj2 = querystring.parse(str, ";", ":");
+console.log(JSON.stringify(obj2));
+```
+
 #### path
 
 ```js
