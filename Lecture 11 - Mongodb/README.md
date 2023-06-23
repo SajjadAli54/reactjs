@@ -226,7 +226,7 @@ db.students.find({ age: 22, "address.city": "London" });
 db.students.find({ age: { $gt: 20 } });
 
 // Age >= 20
-b.students.find({ age: { $gte: 20 } });
+db.students.find({ age: { $gte: 20 } });
 
 // Age != 20
 db.students.find({ age: { $ne: 20 } });
@@ -472,7 +472,9 @@ app.listen(3000, () => {
 </ul>
 ```
 
-# Files uploader (Express and Multy)
+# Files uploader (Express and Multer)
+
+[Docs](https://www.freecodecamp.org/news/simplify-your-file-upload-process-in-express-js/)
 
 # Middle wear
 
