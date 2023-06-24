@@ -472,10 +472,6 @@ app.listen(3000, () => {
 </ul>
 ```
 
-# Files uploader (Express and Multer)
-
-[Docs](https://www.freecodecamp.org/news/simplify-your-file-upload-process-in-express-js/)
-
 # Middle wear
 
 Intercept the request or response
@@ -504,6 +500,112 @@ app.post("/product/save", validateProductMiddleWare, (req, res) => {
       res.redirect("/product/new");
     });
 });
+```
+
+# Files uploader (Express and Multer)
+
+[Docs](https://www.freecodecamp.org/news/simplify-your-file-upload-process-in-express-js/)
+
+```sh
+npm i multer express ejs
+```
+
+`middlewares/upload.js`
+
+```js
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    if (file.mimetype === "application/pdf")
+      return callback(null, "uploads/pdfs");
+    if (file.mimetype.startsWith("image/"))
+      return callback(null, "uploads/images");
+
+    callback(null, "uploads/others");
+  },
+  filename: (req, file, callback) => {
+    callback(null, Date.now() + "-" + file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+module.exports = upload;
+```
+
+`server.js`
+
+```js
+const express = require("express");
+const upload = require("./middlewares/upload");
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/upload.html");
+});
+
+app.post("/upload", upload.single("file"), (req, res) => {
+  const path = req.file.path;
+  console.log(path);
+  res.json({ file: req.file, message: "File uploaded successfully." });
+});
+
+app.listen(3000, () => {
+  console.log("Server is running on port 3000.");
+});
+```
+
+`upload.html`
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>File Upload</title>
+
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      form {
+        width: 30%;
+        margin: 0 auto;
+      }
+
+      input[type="file"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>File Upload</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" required />
+      <button type="submit">Upload</button>
+    </form>
+  </body>
+</html>
 ```
 
 # API Creation
