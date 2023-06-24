@@ -8,6 +8,8 @@ app.get("/", (req, res) => {
 });
 
 app.post("/upload", upload.single("file"), (req, res) => {
+  const path = req.file.path;
+  console.log(path);
   res.json({ file: req.file, message: "File uploaded successfully." });
 });
 
