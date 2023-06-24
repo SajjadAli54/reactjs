@@ -31,6 +31,26 @@ app.get("/product/:pid", async (req, res) => {
   });
 });
 
+app.get("/product/delete/:pid", async (req, res) => {
+  const product = await Product.findByIdAndDelete(req.params.pid);
+  res.redirect("/products");
+});
+
+app.get("/product/edit/:pid", async (req, res) => {
+  const product = await Product.findById(req.params.pid);
+  res.render("editProduct", {
+    product: product,
+  });
+});
+
+app.post("/product/update/:pid", async (req, res) => {
+  const { pid } = req.params;
+  const { body } = req;
+
+  await Product.findByIdAndUpdate(pid, body);
+  res.redirect("/products");
+});
+
 app.get("/products/get", async (req, res) => {
   const products = await Product.find();
   res.json(products);
