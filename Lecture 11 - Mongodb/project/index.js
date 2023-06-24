@@ -20,7 +20,9 @@ app.get("/products", async (req, res) => {
 });
 
 app.get("/product/new", (req, res) => {
-  res.render("newProduct");
+  res.render("newProduct", {
+    product: {},
+  });
 });
 
 app.get("/product/:pid", async (req, res) => {
@@ -38,7 +40,7 @@ app.get("/product/delete/:pid", async (req, res) => {
 
 app.get("/product/edit/:pid", async (req, res) => {
   const product = await Product.findById(req.params.pid);
-  res.render("editProduct", {
+  res.render("newProduct", {
     product: product,
   });
 });

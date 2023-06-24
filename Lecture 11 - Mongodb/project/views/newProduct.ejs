@@ -51,31 +51,46 @@
     <header>
         <%- include("./partials/navbar") %>
 
-            <h1>Add New Product</h1>
+            <h1>
+                <% if(product._id){%>
+                    Edit Product
+                    <%}else {%>
+                        New Product
+                        <% } %>
+
+            </h1>
 
     </header>
-    <form action="/product/save" method="post">
-        <label>Product Name: <input type="text" name="name" placeholder="Enter product name" />
+    <form method="post">
+        <label>Product Name: <input type="text" name="name" placeholder="Enter product name"
+                value="<%=product?.name%>" />
         </label>
         <br />
         <br />
 
-        <label>Price: <input type="number" name="price" placeholder="Enter product price" />
+        <label>Price: <input type="number" name="price" placeholder="Enter product price" value="<%=product?.price%>" />
         </label>
         <br />
         <br />
 
-        <label>Quantity: <input type="number" name="qty" placeholder="Enter product quantity" />
+        <label>Quantity: <input type="number" name="qty" placeholder="Enter product quantity"
+                value="<%=product?.qty%>" />
         </label>
         <br />
         <br />
 
-        <label>Manufacturer: <input type="text" name="manufacturer" placeholder="Enter Manufacturer" />
+        <label>Manufacturer: <input type="text" name="manufacturer" placeholder="Enter Manufacturer"
+                value="<%=product?.manufacturer%>" />
         </label>
         <br />
         <br />
 
-        <input type="submit" value="Save" />
+        <% if(!product?._id) {%>
+            <input type="submit" value="Save" formaction="/product/save" />
+            <%}%>
+                <% if(product?._id) {%>
+                    <input type="submit" value="Update" formaction="/product/update/<%=product._id%>" />
+                    <%}%>
 
     </form>
 </body>
